@@ -11,6 +11,12 @@ public class Escopeta extends Arma {
         this.dispersion = 1.5f;
     }
 
+    public Escopeta(String nombre, float precio, int dano, int cartuchos, float dispersion) {
+        super(nombre, precio, dano, 3.0f, cartuchos);
+        this.cartuchos = cartuchos;
+        this.dispersion = dispersion;
+    }
+
     @Override
     public String disparar() {
         consumirMunicion();
