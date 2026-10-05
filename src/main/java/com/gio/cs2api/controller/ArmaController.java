@@ -17,26 +17,43 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ArmaController {
 
-    @GetMapping("/")
-    public String inicio() {
-        return "API de armas de Counter-Strike 2 funcionando";
-    }
-
     @GetMapping("/armas/{tipo}")
-    public Arma crearArma( 
+    public Arma crearArma(
             @PathVariable String tipo,
             @RequestParam(defaultValue = "Arma CS2") String nombre,
-            @RequestParam(defaultValue = "100") float precio) {
+            @RequestParam(defaultValue = "100") float precio,
+            @RequestParam(required = false) Integer dano,
+            @RequestParam(required = false) Integer cargador) {
 
         return switch (tipo.toLowerCase()) {
-            case "pistola" -> new Pistola(nombre, precio);
-            case "escopeta" -> new Escopeta(nombre, precio);
+
+            case "pistola" -> {
+                if (dano != null && cargador != null) {
+                    yield new Pistola(nombre, precio, dano, cargador);
+                }
+                yield new Pistola(nombre, precio);
+            }
+
+            case "escopeta" -> {
+                if (dano != null && cargador != null) {
+                    yield new Escopeta(nombre, precio, dano, cargador, 1.5f);
+                }
+                yield new Escopeta(nombre, precio);
+            }
+
             case "subfusil" -> new Subfusil(nombre, precio);
+
             case "francotirador" -> new Francotirador(nombre, precio);
+
             case "humo" -> new GranadaHumo(nombre, precio);
+
             case "flash" -> new GranadaFlash(nombre, precio);
+
             case "incendiaria" -> new GranadaIncendiaria(nombre, precio);
-            default -> throw new IllegalArgumentException("Tipo de arma no válido");
+
+            default -> throw new IllegalArgumentException(
+                    "Tipo de arma no válido: " + tipo
+            );
         };
     }
 }
