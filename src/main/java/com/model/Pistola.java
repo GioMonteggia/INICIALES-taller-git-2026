@@ -11,10 +11,21 @@ public class Pistola extends Arma {
         this.cargador = 12;
     }
 
+    public Pistola(String nombre, float precio, int dano, int cargador) {
+        super(nombre, precio, dano, 1.0f, cargador);
+        this.modoDisparo = "Semiautomático";
+        this.cargador = cargador;
+    }
+
     @Override
     public String disparar() {
         consumirMunicion();
         return obtenerNombre() + " dispara.";
+    }
+
+    public String disparar(int distancia) {
+        consumirMunicion();
+        return obtenerNombre() + " dispara a " + distancia + " metros.";
     }
 
     public String getModoDisparo() {
