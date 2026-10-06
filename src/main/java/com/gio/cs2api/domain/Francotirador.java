@@ -1,8 +1,8 @@
-package com.gio.cs2api.model;
+package com.gio.cs2api.domain;
 
 public class Francotirador extends Arma {
 
-    private int zoom;
+    private final int zoom;
 
     public Francotirador(String nombre, float precio) {
         super(nombre, precio, 100, 4.0f, 5);
