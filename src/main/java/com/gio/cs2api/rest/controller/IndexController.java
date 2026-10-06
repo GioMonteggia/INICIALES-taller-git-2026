@@ -1,4 +1,4 @@
-package com.gio.cs2api.controller;
+package com.gio.cs2api.rest.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
