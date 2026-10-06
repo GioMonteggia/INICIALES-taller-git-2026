@@ -13,6 +13,15 @@ public class Pistola extends Arma {
 
     public Pistola(String nombre, float precio, int dano, int cargador) {
         super(nombre, precio, dano, 1.0f, cargador);
+
+        if (dano <= 0) {
+            throw new IllegalArgumentException("El daño de la pistola debe ser mayor que 0");
+        }
+
+        if (cargador <= 0) {
+            throw new IllegalArgumentException("El cargador de la pistola debe ser mayor que 0");
+        }
+
         this.modoDisparo = "Semiautomático";
         this.cargador = cargador;
     }
