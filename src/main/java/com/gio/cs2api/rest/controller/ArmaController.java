@@ -92,6 +92,27 @@ public class ArmaController {
         return ResponseEntity.ok(respuesta);
     }
 
+    @GetMapping("/armas/polimorfismo")
+    public ResponseEntity<Map<String, Object>> demostrarPolimorfismo() {
+
+        Arma rifle = new Rifle("AK-47", 2700f);
+        Arma pistola = new Pistola("Glock", 700f);
+
+        Map<String, Object> rifleRespuesta = new LinkedHashMap<>();
+        rifleRespuesta.put("tipo", rifle.getClass().getSimpleName());
+        rifleRespuesta.put("mensaje", rifle.disparar());
+
+        Map<String, Object> pistolaRespuesta = new LinkedHashMap<>();
+        pistolaRespuesta.put("tipo", pistola.getClass().getSimpleName());
+        pistolaRespuesta.put("mensaje", pistola.disparar());
+
+        Map<String, Object> respuesta = new LinkedHashMap<>();
+        respuesta.put("rifle", rifleRespuesta);
+        respuesta.put("pistola", pistolaRespuesta);
+
+        return ResponseEntity.ok(respuesta);
+    }
+
     @org.springframework.web.bind.annotation.ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, Object>> manejarError(
             IllegalArgumentException exception) {
