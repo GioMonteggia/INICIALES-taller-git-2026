@@ -1,9 +1,9 @@
-package com.gio.cs2api.model;
+package com.gio.cs2api.domain;
 
 public class Escopeta extends Arma {
 
-    private int cartuchos;
-    private float dispersion;
+    private final int cartuchos;
+    private final float dispersion;
 
     public Escopeta(String nombre, float precio) {
         super(nombre, precio, 80, 3.0f, 8);
@@ -13,6 +13,11 @@ public class Escopeta extends Arma {
 
     public Escopeta(String nombre, float precio, int dano, int cartuchos, float dispersion) {
         super(nombre, precio, dano, 3.0f, cartuchos);
+
+        if (dispersion <= 0) {
+            throw new IllegalArgumentException("La dispersión debe ser mayor que 0");
+        }
+
         this.cartuchos = cartuchos;
         this.dispersion = dispersion;
     }
