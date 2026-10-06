@@ -92,7 +92,7 @@ public class ArmaController {
         return ResponseEntity.ok(respuesta);
     }
 
-    @GetMapping("/armas/polimorfismo")
+    @GetMapping("/polimorfismo")
     public ResponseEntity<Map<String, Object>> demostrarPolimorfismo() {
 
         Arma rifle = new Rifle("AK-47", 2700f);
