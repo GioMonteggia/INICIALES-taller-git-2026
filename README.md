@@ -4,7 +4,16 @@
 
 Proyecto desarrollado en Java con Spring Boot para representar diferentes armas de Counter-Strike 2 mediante una API REST.
 
-El proyecto utiliza programación orientada a objetos, herencia, clases abstractas y polimorfismo.
+El proyecto aplica conceptos de programación orientada a objetos, incluyendo:
+
+- Encapsulamiento.
+- Herencia.
+- Clases abstractas.
+- Polimorfismo.
+- Sobrecarga de métodos (overloading).
+- Sobrescritura de métodos (overriding).
+- Constructores simples y sobrecargados.
+- Validación de invariantes del dominio.
 
 ## Tecnologías utilizadas
 
@@ -13,53 +22,45 @@ El proyecto utiliza programación orientada a objetos, herencia, clases abstract
 - Maven
 - Git
 - GitHub
+- JUnit 5
 
-## Estructura
+## Estructura del proyecto
 
-Las armas se encuentran dentro del paquete:
+El proyecto separa las clases del dominio de los controladores REST.
 
-`py.edu.uc.lp3.vr.cs2.modelo`
-
-Entre las clases existentes se encuentran:
-
-- Arma
-- ArmaDeFuego
-- Pistola
-- Subfusil
-- Rifle
-- Escopeta
-- Francotirador
-- Granada
-- GranadaFlash
-- GranadaHumo
-- GranadaIncendiaria
-
-## Contribución realizada
-
-Como parte del Taller Git 2026 se agregó una nueva clase hija:
-
-### Revolver
-
-La clase `Revolver` extiende de `ArmaDeFuego`.
-
-Se implementaron:
-
-- Constructor propio.
-- Método `factorDistancia()`.
-- Método `getTipo()`.
-
-El revólver posee un comportamiento de daño por distancia diferente al de la clase `Pistola`.
-
-## Git
-
-La contribución fue realizada mediante una rama independiente:
-
-`gm-contribucion-lp3`
-
-Luego se realizó el commit y el Pull Request correspondiente para incorporar la modificación al proyecto principal.
-
-## Autor de la contribución
-
-**Gio Monteggia**
-
-GitHub: [GioMonteggia](https://github.com/GioMonteggia)
+```text
+src/
+├── main/
+│   └── java/
+│       └── com/
+│           └── gio/
+│               └── cs2api/
+│                   ├── Cs2ApiApplication.java
+│                   │
+│                   ├── domain/
+│                   │   ├── Arma.java
+│                   │   ├── Pistola.java
+│                   │   ├── Subfusil.java
+│                   │   ├── Rifle.java
+│                   │   ├── Escopeta.java
+│                   │   ├── Francotirador.java
+│                   │   ├── Granada.java
+│                   │   ├── GranadaFlash.java
+│                   │   ├── GranadaHumo.java
+│                   │   ├── GranadaIncendiaria.java
+│                   │   └── GranadaSenuelo.java
+│                   │
+│                   └── rest/
+│                       └── controller/
+│                           ├── IndexController.java
+│                           ├── ArmaController.java
+│                           └── RifleController.java
+│
+└── test/
+    └── java/
+        └── com/
+            └── gio/
+                └── cs2api/
+                    ├── Cs2ApiApplicationTests.java
+                    └── domain/
+                        └── RifleTests.java
