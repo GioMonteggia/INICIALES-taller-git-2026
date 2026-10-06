@@ -1,9 +1,9 @@
-package com.gio.cs2api.model;
+package com.gio.cs2api.domain;
 
 public class Subfusil extends Arma {
 
-    private String modoDisparo;
-    private int cargador;
+    private final String modoDisparo;
+    private final int cargador;
 
     public Subfusil(String nombre, float precio) {
         super(nombre, precio, 30, 2.0f, 30);
