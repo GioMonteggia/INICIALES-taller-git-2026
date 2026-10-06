@@ -1,9 +1,9 @@
-package com.gio.cs2api.model;
+package com.gio.cs2api.domain;
 
 public class Pistola extends Arma {
 
-    private String modoDisparo;
-    private int cargador;
+    private final String modoDisparo;
+    private final int cargador;
 
     public Pistola(String nombre, float precio) {
         super(nombre, precio, 35, 1.0f, 12);
@@ -24,6 +24,10 @@ public class Pistola extends Arma {
     }
 
     public String disparar(int distancia) {
+        if (distancia < 0) {
+            throw new IllegalArgumentException("La distancia no puede ser negativa");
+        }
+
         consumirMunicion();
         return obtenerNombre() + " dispara a " + distancia + " metros.";
     }
