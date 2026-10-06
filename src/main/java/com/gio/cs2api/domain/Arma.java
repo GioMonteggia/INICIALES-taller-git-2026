@@ -19,8 +19,8 @@ public abstract class Arma {
             throw new IllegalArgumentException("El precio no puede ser negativo");
         }
 
-        if (dano <= 0) {
-            throw new IllegalArgumentException("El daño debe ser mayor que 0");
+        if (dano < 0) {
+            throw new IllegalArgumentException("El daño no puede ser negativo");
         }
 
         if (peso <= 0) {
