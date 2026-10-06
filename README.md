@@ -262,11 +262,12 @@ Entre las validaciones implementadas se encuentran:
 
 - El nombre no puede estar vacío.
 - El precio no puede ser negativo.
-- El daño debe ser válido.
+- El daño debe ser mayor que cero para las armas que causan daño.
 - El peso debe ser mayor que cero.
 - La munición máxima debe ser mayor que cero.
 - El cargador debe ser mayor que cero.
 - La distancia de disparo no puede ser negativa.
+- Los parámetros `dano` y `cargador` deben enviarse juntos cuando se utiliza el constructor correspondiente desde la API.
 
 ## API REST
 
@@ -277,6 +278,12 @@ GET /
 ```
 
 Devuelve un mensaje indicando que la API está funcionando.
+
+Respuesta:
+
+```text
+API de armas de Counter-Strike 2 funcionando
+```
 
 ### Crear un arma
 
@@ -292,6 +299,56 @@ GET /armas/rifle?nombre=AK-47&precio=2700&dano=36&cargador=30
 
 La respuesta contiene información del arma y el resultado de ejecutar su comportamiento `disparar()`.
 
+Ejemplo de respuesta:
+
+```json
+{
+  "tipo": "Rifle",
+  "nombre": "AK-47",
+  "precio": 2700.0,
+  "dano": 36,
+  "peso": 3.7,
+  "municionMax": 30,
+  "municionActual": 30,
+  "mensaje": "AK-47 dispara a 100 m y causa 15 de daño.",
+  "municionRestante": 29
+}
+```
+
+### Demostrar polimorfismo
+
+```text
+GET /polimorfismo
+```
+
+Este endpoint demuestra el polimorfismo mediante dos objetos de clases hijas tratados como referencias del tipo padre `Arma`.
+
+El controller utiliza:
+
+```java
+Arma rifle = new Rifle("AK-47", 2700f);
+Arma pistola = new Pistola("Glock", 700f);
+```
+
+Ambas instancias son manejadas mediante referencias de tipo `Arma`, pero cada clase hija ejecuta su propia implementación sobrescrita de `disparar()`.
+
+Ejemplo de respuesta:
+
+```json
+{
+  "rifle": {
+    "tipo": "Rifle",
+    "mensaje": "AK-47 dispara a 100 m y causa 15 de daño."
+  },
+  "pistola": {
+    "tipo": "Pistola",
+    "mensaje": "Glock dispara."
+  }
+}
+```
+
+Esta respuesta permite observar directamente el comportamiento polimórfico de las clases hijas.
+
 ### Disparar un rifle
 
 ```text
@@ -304,7 +361,13 @@ Ejemplo:
 GET /rifles/AK-47/disparar?distancia=50
 ```
 
-El endpoint permite utilizar la sobrecarga `disparar(int distancia)`.
+El endpoint permite utilizar la sobrecarga:
+
+```java
+disparar(int distancia)
+```
+
+También se puede utilizar `disparar()` cuando no se proporciona una distancia.
 
 ### Validación de errores
 
@@ -316,7 +379,16 @@ Ejemplo:
 GET /armas/rifle?dano=0&cargador=30
 ```
 
-produce un error indicando que el daño no puede ser cero o negativo.
+produce una respuesta de error indicando que el daño no puede ser cero o negativo.
+
+También se validan valores como:
+
+- Cargadores iguales a cero o negativos.
+- Daño igual a cero o negativo.
+- Distancias negativas.
+- Nombres vacíos.
+- Precios negativos.
+- Parámetros incompletos.
 
 ## Pruebas
 
@@ -333,7 +405,23 @@ Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
 BUILD SUCCESS
 ```
 
-También se realizaron pruebas manuales de los principales endpoints HTTP.
+Las pruebas automatizadas verifican principalmente:
+
+- Constructor simple de `Rifle`.
+- Constructor sobrecargado de `Rifle`.
+- Validación de estados inválidos.
+- Consumo de munición.
+- Comportamiento de `disparar(int distancia)`.
+- Atenuación del daño según la distancia.
+
+También se realizaron pruebas manuales de los principales endpoints HTTP, incluyendo:
+
+```text
+GET /
+GET /armas/rifle?nombre=AK-47&precio=2700&dano=36&cargador=30
+GET /polimorfismo
+GET /rifles/AK-47/disparar?distancia=50
+```
 
 ## Ejecución del proyecto
 
@@ -363,19 +451,21 @@ La bitácora documenta:
 - Participación del estudiante.
 - Evidencia de pruebas realizadas.
 
+La herramienta utilizada fue ChatGPT, de OpenAI, utilizando el modelo GPT-5.6 Luna.
+
 ## Licencia
 
 Este proyecto está distribuido bajo la licencia **Apache License 2.0**.
 
 El texto completo de la licencia se encuentra en el archivo `LICENSE` del repositorio.
 
-## Commit de la solución
-
-Repositorio:
+## Repositorio
 
 https://github.com/GioMonteggia/SMONTEGGIA-taller-git-2026
 
-El enlace al commit final de la solución se incluirá en esta sección una vez finalizados todos los cambios y pruebas de la entrega.
+## Commit de la solución
+
+El enlace al commit final de la solución se incorporará después de finalizar todos los cambios y pruebas de la entrega.
 
 ## Autor
 
