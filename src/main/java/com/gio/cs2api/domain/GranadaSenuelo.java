@@ -1,4 +1,4 @@
-package com.gio.cs2api.model;
+package com.gio.cs2api.domain;
 
 public class GranadaSenuelo extends Granada {
 
@@ -11,6 +11,7 @@ public class GranadaSenuelo extends Granada {
         if (getMunicionActual() == 0) {
             return obtenerNombre() + ": no quedan señuelos.";
         }
+
         consumirMunicion();
         return obtenerNombre() + " simula disparos falsos para distraer al enemigo.";
     }
