@@ -1,12 +1,21 @@
-package com.gio.cs2api.model;
+package com.gio.cs2api.domain;
 
 public abstract class Granada extends Arma {
 
-    private String tipoGranada;
-    private float radioExplosion;
+    private final String tipoGranada;
+    private final float radioExplosion;
 
     public Granada(String nombre, float precio, String tipoGranada, float radioExplosion) {
         super(nombre, precio, 0, 1.0f, 1);
+
+        if (tipoGranada == null || tipoGranada.isBlank()) {
+            throw new IllegalArgumentException("El tipo de granada no puede estar vacío");
+        }
+
+        if (radioExplosion <= 0) {
+            throw new IllegalArgumentException("El radio de explosión debe ser mayor que 0");
+        }
+
         this.tipoGranada = tipoGranada;
         this.radioExplosion = radioExplosion;
     }
