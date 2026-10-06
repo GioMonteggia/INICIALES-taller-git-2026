@@ -1,4 +1,4 @@
-package com.gio.cs2api.model;
+package com.gio.cs2api.domain;
 
 public class GranadaFlash extends Granada {
 
