@@ -12,8 +12,8 @@ public abstract class Granada extends Arma {
             throw new IllegalArgumentException("El tipo de granada no puede estar vacío");
         }
 
-        if (radioExplosion <= 0) {
-            throw new IllegalArgumentException("El radio de explosión debe ser mayor que 0");
+        if (radioExplosion < 0) {
+            throw new IllegalArgumentException("El radio de explosión no puede ser negativo");
         }
 
         this.tipoGranada = tipoGranada;
