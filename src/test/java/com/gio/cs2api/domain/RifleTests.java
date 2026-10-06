@@ -1,4 +1,4 @@
-package com.gio.cs2api.model;
+package com.gio.cs2api.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -27,9 +27,20 @@ class RifleTests {
 
     @Test
     void ningunaFirmaDejaElRifleEnUnEstadoImposible() {
-        assertThrows(IllegalArgumentException.class, () -> new Rifle("AK-47", 2700f, 36, 0));
-        assertThrows(IllegalArgumentException.class, () -> new Rifle("AK-47", 2700f, 0, 30));
-        assertThrows(IllegalArgumentException.class, () -> new Rifle("AK-47", 2700f).disparar(-1));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new Rifle("AK-47", 2700f, 36, 0)
+        );
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new Rifle("AK-47", 2700f, 0, 30)
+        );
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new Rifle("AK-47", 2700f).disparar(-1)
+        );
     }
 
     @Test
