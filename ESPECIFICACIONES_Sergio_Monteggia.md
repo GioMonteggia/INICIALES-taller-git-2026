@@ -7,7 +7,7 @@
 https://github.com/GioMonteggia/SMONTEGGIA-taller-git-2026
 
 **Commit de la solución:**  
-Se actualizará al finalizar todas las verificaciones de la entrega.
+https://github.com/GioMonteggia/SMONTEGGIA-taller-git-2026/commit/8ed6cf8de1843b29ac3027299ba6ed70369bbe4d
 
 **Tecnologías:** Java 21, Spring Boot, Maven, Git, GitHub, JUnit 5  
 **Licencia:** Apache 2.0
