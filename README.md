@@ -465,7 +465,9 @@ https://github.com/GioMonteggia/SMONTEGGIA-taller-git-2026
 
 ## Commit de la solución
 
-El enlace al commit final de la solución se incorporará después de finalizar todos los cambios y pruebas de la entrega.
+El commit de la solución es:
+
+[5d894afd2d6ef30ebd478fb9df99dcc5e8c07d1a](https://github.com/GioMonteggia/SMONTEGGIA-taller-git-2026/commit/5d894afd2d6ef30ebd478fb9df99dcc5e8c07d1a)
 
 ## Autor
 
