@@ -3,16 +3,11 @@ package com.gio.cs2api.domain;
 public class GranadaSenuelo extends Granada {
 
     public GranadaSenuelo(String nombre, float precio) {
-        super(nombre, precio, "Señuelo", 0.0f);
+        super(nombre, precio, "Senuelo", 2.5f);
     }
 
     @Override
-    public String lanzar() {
-        if (getMunicionActual() == 0) {
-            return obtenerNombre() + ": no quedan señuelos.";
-        }
-
-        consumirMunicion();
-        return obtenerNombre() + " simula disparos falsos para distraer al enemigo.";
+    protected String efectoLanzamiento() {
+        return obtenerNombre() + " lanza una granada señuelo.";
     }
 }
