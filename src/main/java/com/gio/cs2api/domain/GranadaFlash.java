@@ -1,3 +1,4 @@
+
 package com.gio.cs2api.domain;
 
 public class GranadaFlash extends Granada {
@@ -7,8 +8,7 @@ public class GranadaFlash extends Granada {
     }
 
     @Override
-    public String lanzar() {
-        consumirMunicion();
+    protected String efectoLanzamiento() {
         return obtenerNombre() + " lanza una flash.";
     }
 }
