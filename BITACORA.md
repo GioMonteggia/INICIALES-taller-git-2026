@@ -10,7 +10,7 @@ Durante el desarrollo de este proyecto se utilizó:
 
 ## Objetivo del uso de IA
 
-La inteligencia artificial fue utilizada como asistente durante el desarrollo y revisión del proyecto de API REST de armas de Counter-Strike 2.
+La inteligencia artificial fue utilizada como asistente durante el desarrollo, revisión, prueba y documentación del proyecto de API REST de armas de Counter-Strike 2.
 
 La IA se utilizó principalmente para:
 
@@ -18,14 +18,22 @@ La IA se utilizó principalmente para:
 - Organizar correctamente los paquetes `domain` y `rest.controller`.
 - Revisar y mejorar las clases del dominio.
 - Implementar y revisar herencia y clases abstractas.
-- Implementar overriding y overloading.
+- Implementar y revisar overriding y overloading.
 - Revisar constructores simples y sobrecargados.
 - Incorporar validaciones para mantener invariantes del dominio.
+- Revisar el encapsulamiento de los atributos.
 - Revisar los controladores REST.
+- Implementar y revisar el inventario polimórfico.
+- Implementar la clase `Jugador`.
+- Verificar que el inventario pueda trabajar con diferentes tipos de `Arma` sin utilizar un `if` por cada tipo.
+- Centralizar el control de munición dentro del modelo de dominio.
+- Centralizar el control de cooldown de las granadas.
 - Probar los endpoints de la API.
-- Revisar y corregir errores de organización del proyecto.
-- Elaborar la documentación del proyecto.
-- Preparar el README y el diagrama de clases.
+- Revisar y corregir errores de compilación.
+- Ejecutar y comprobar las pruebas automatizadas con Maven.
+- Elaborar y actualizar la documentación del proyecto.
+- Preparar el README.
+- Preparar el diagrama de clases utilizando Mermaid.
 
 ## Resumen de los prompts utilizados
 
@@ -39,38 +47,114 @@ Los principales pedidos realizados al asistente estuvieron relacionados con:
 6. Verificar la implementación de overriding mediante el método `disparar()`.
 7. Verificar la implementación de overloading mediante métodos como `disparar()` y `disparar(int distancia)`.
 8. Revisar los controladores REST y los endpoints disponibles.
-9. Ejecutar y comprobar las pruebas automatizadas con Maven.
-10. Probar manualmente los endpoints HTTP y verificar las respuestas JSON.
-11. Revisar y actualizar la documentación del proyecto.
-12. Elaborar el diagrama de clases utilizando Mermaid.
+9. Revisar el diseño de `Granada` para centralizar el control de munición y cooldown.
+10. Crear un inventario basado en `List<Arma>` para permitir el polimorfismo sin utilizar un `if` o `switch` por cada tipo de arma.
+11. Crear la clase `Jugador` para trabajar con el inventario de armas.
+12. Crear el `JugadorController` para demostrar las operaciones de disparar, recargar y mostrar la tienda.
+13. Ejecutar y comprobar las pruebas automatizadas con Maven.
+14. Probar manualmente los endpoints HTTP y verificar las respuestas JSON.
+15. Revisar y actualizar la documentación del proyecto.
+16. Elaborar y actualizar el diagrama de clases utilizando Mermaid.
 
 ## Participación del estudiante
 
-La IA fue utilizada como herramienta de apoyo y revisión. Las decisiones sobre los cambios realizados en el proyecto fueron revisadas y aplicadas por el estudiante.
+La IA fue utilizada como herramienta de apoyo, orientación y revisión durante el desarrollo.
 
-El código fue probado mediante Maven y mediante solicitudes HTTP a la aplicación Spring Boot.
+El estudiante tomó las decisiones sobre los cambios que debían incorporarse al proyecto, realizó las modificaciones en el repositorio, revisó el código generado o sugerido y comprobó el funcionamiento de la aplicación.
+
+También se realizaron pruebas de compilación y ejecución utilizando Maven y pruebas manuales mediante solicitudes HTTP a la aplicación Spring Boot.
+
+El estudiante verificó los resultados obtenidos y decidió qué cambios conservar en el proyecto.
+
 ## Evidencia de pruebas
 
 Se ejecutaron las pruebas automatizadas mediante:
 
+```bash
 ./mvnw test
+```
 
 El resultado obtenido fue:
 
+```text
 Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
 BUILD SUCCESS
+```
 
 También se verificaron manualmente los endpoints principales de la API:
 
+```text
 GET /
 GET /armas/rifle
 GET /armas/rifle?nombre=AK-47&precio=2700&dano=36&cargador=30
+GET /polimorfismo
 GET /rifles/AK-47/disparar?distancia=50
+```
 
-Además, se comprobó el rechazo de valores inválidos mediante:
+Se verificó el rechazo de valores inválidos mediante:
 
+```text
 GET /armas/rifle?dano=0&cargador=30
+```
 
 que produjo una respuesta HTTP 400 con el mensaje:
 
+```text
 El daño no puede ser 0 o negativo
+```
+
+También se probaron los nuevos endpoints relacionados con el jugador y su inventario:
+
+```text
+GET /jugadores/demo
+GET /jugadores/demo/disparar
+GET /jugadores/demo/recargar
+GET /jugadores/demo/tienda
+GET /jugadores/demo/disparar/0
+```
+
+El endpoint:
+
+```text
+GET /jugadores/demo
+```
+
+demostró que un mismo inventario puede contener diferentes implementaciones de `Arma`, incluyendo:
+
+- `Rifle`
+- `Pistola`
+- `Escopeta`
+- `Francotirador`
+- `GranadaFlash`
+
+El endpoint:
+
+```text
+GET /jugadores/demo/disparar
+```
+
+demostró el comportamiento polimórfico, ya que cada arma ejecutó su propia implementación de `disparar()` sin que el controlador tuviera que utilizar un `if` para identificar el tipo concreto.
+
+El endpoint:
+
+```text
+GET /jugadores/demo/recargar
+```
+
+demostró el uso del comportamiento común de `recargar()` definido en la clase padre.
+
+El endpoint:
+
+```text
+GET /jugadores/demo/tienda
+```
+
+demostró que el inventario puede recorrer las armas mediante la referencia general `Arma` y obtener sus nombres y precios.
+
+## Resultado
+
+La utilización de IA permitió apoyar el análisis, implementación, revisión y documentación del proyecto.
+
+La implementación final fue comprobada mediante pruebas automatizadas y pruebas manuales de los endpoints REST.
+
+El resultado final mantiene la separación entre dominio y controladores REST, aplica encapsulamiento, herencia, polimorfismo, overriding, overloading, constructores sobrecargados e invariantes, además de incorporar un inventario polimórfico para el jugador.
