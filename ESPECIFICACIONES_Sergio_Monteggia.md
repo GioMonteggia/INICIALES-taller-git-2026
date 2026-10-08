@@ -798,7 +798,7 @@ El hash definitivo del commit de entrega se establecerá después de completar:
 El enlace final será:
 
 ```text
-https://github.com/GioMonteggia/SMONTEGGIA-taller-git-2026/commit/HASH_FINAL
+https://github.com/GioMonteggia/SMONTEGGIA-taller-git-2026/commit/8ed6cf8de1843b29ac3027299ba6ed70369bbe4d
 ```
 
 El `HASH_FINAL` será reemplazado por el hash completo real del commit definitivo.
