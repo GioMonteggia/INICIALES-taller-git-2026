@@ -700,9 +700,11 @@ El texto completo de la licencia se encuentra en el archivo `LICENSE` del reposi
 
 https://github.com/GioMonteggia/SMONTEGGIA-taller-git-2026
 
-## Commit de la solución
+## Commit de solución
 
-El commit definitivo de la solución se actualizará al finalizar la implementación y las verificaciones de la entrega.
+La solución final verificada corresponde al siguiente commit:
+
+https://github.com/GioMonteggia/SMONTEGGIA-taller-git-2026/commit/8ed6cf8de1843b29ac3027299ba6ed70369bbe4d
 
 ## Autor
 
