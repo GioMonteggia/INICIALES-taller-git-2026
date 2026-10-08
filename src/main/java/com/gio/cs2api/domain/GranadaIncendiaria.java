@@ -3,12 +3,11 @@ package com.gio.cs2api.domain;
 public class GranadaIncendiaria extends Granada {
 
     public GranadaIncendiaria(String nombre, float precio) {
-        super(nombre, precio, "Incendiaria", 3.0f);
+        super(nombre, precio, "Incendiaria", 4.5f);
     }
 
     @Override
-    public String lanzar() {
-        consumirMunicion();
-        return obtenerNombre() + " lanza fuego.";
+    protected String efectoLanzamiento() {
+        return obtenerNombre() + " lanza una granada incendiaria.";
     }
 }
